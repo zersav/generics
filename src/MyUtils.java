@@ -1,8 +1,6 @@
-import Shapes.Circle;
 import Shapes.Shape;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MyUtils <T extends Shape> {
     private List <T> shapes; //wildcard
@@ -13,17 +11,21 @@ public class MyUtils <T extends Shape> {
         shapes= new ArrayList<T>();
     }
 
-    public MyUtils <? extends Shape> addShape(T shape){
+    public MyUtils addShape(T shape){
         shapes.add(shape);
         return this;
     }
 
-    public List<Double> getAreas(){
-        List <Double> areas = new ArrayList<>();
-        for (Shape shape:shapes){
-            areas.add(shape.getArea());
-        }
-        return areas;
+    public List<? extends Shape> maxAreas(){
+        T temp_var= Collections.max(shapes, (o1, o2) -> {
+            if (o1.getArea()>o2.getArea()) return 1;
+            if (o1.getArea()>o2.getArea()) return -1;
+            return 0;
+        });
+
+        List<T> temp_list = new ArrayList<>();
+        temp_list.add(temp_var);
+        return temp_list;
     }
 
 

@@ -2,9 +2,11 @@ import Shapes.Circle;
 import Shapes.Rectangle;
 import Shapes.Shape;
 
+import java.awt.*;
+
 public class Calculator {
     public static void main(String[] args) {
-        MyUtils myUtils = new MyUtils<Circle>("utill");
+        MyUtils <Shape> myUtils = new MyUtils<>("utill");
 
         myUtils.addShape(new Circle("circle 1",11))
                 .addShape(new Circle("circle 2", 23))
@@ -12,7 +14,9 @@ public class Calculator {
                 .addShape(new Rectangle("rectangle 2", 11 ,2));
 
 
-        myUtils.getAreas();
+        for (Shape shape: myUtils.maxAreas()){
+            System.out.println(shape.getArea());
+        }
 
 
     }
